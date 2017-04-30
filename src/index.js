@@ -1,19 +1,13 @@
-
+const { response } = require('./util/lambda')
 
 function handler(event, context, callback) {
 
     const { body } = event;
 
-    callback(null, {
-        statusCode: 200,
-        body: JSON.stringify({
-            text: 'it works.',
-            body: JSON.stringify(body)
-        }),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+    callback(null, response({
+        message: 'It works!',
+        body: body
+    }));
 }
 
 module.exports = {
