@@ -9,20 +9,20 @@ Simple boilerplate for a simple NodeJS lambda function. Includes package script 
 [![Known Vulnerabilities](https://snyk.io/test/github/chrisdevwords/node-lambda-boilerplate/badge.svg)](https://snyk.io/test/github/chrisdevwords/node-lambda-boilerplate)
 
 
-Requirementsf
+Requirements
 ------------
-* Requires Node v4.3.2 
+* Requires Node v6.10
 * Package engine is set to strict to match [AWS Lambda Environment](https://aws.amazon.com/blogs/compute/node-js-4-3-2-runtime-now-available-on-lambda/)
 * I recommend using [NVM](https://github.com/creationix/nvm)
 
 ## Running Tests
-This project includes [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/) w/ [Chai-as-promised](https://www.npmjs.com/package/chai-as-promised) for testing service data parsing. If you add to this, write more tests. And run them:
+This project includes [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). If you add to this, write more tests. And run them:
 ````
 $ npm test
 ````
 
 ### Contributing
-All code is transpiled from ES6 with Babel. The lint config is based on [AirBnB's eslint](https://www.npmjs.com/package/eslint-config-airbnb).
+The lint config is based on [AirBnB's eslint](https://www.npmjs.com/package/eslint-config-airbnb).
 To lint the code run:
 ```
 $ npm run lint
@@ -38,8 +38,26 @@ If this throws an error, trying using sudo:
 $ sudo chmod +x .bin/build.sh
 ```
 
-Transpile the ES6 and zip up the relevant files for upload by running:
+Zip up source code and runtime dependencies by running:
 ````
 $ npm run build
 ````
 This should output files.zip to the project root for upload to the AWS Lambda Console.
+
+
+### Deploying w/ Circle CI
+Included is a `circle.yml` file for deployment to AWS with [CircleCI](https://circleci.com).
+This will:
+1. run mocha tests 
+2. publish a coverage report with [coveralls](http://coveralls.io)
+3. publish a dependency status report with [david](https://david-dm.org/)
+4. deploy your code to AWS when master or develop is updated on github.
+
+In order to deploy :
+1. [configure AWS Permissions for your Circle CI account](https://circleci.com/docs/1.0/continuous-deployment-with-amazon-s3/).
+2. Set up [coveralls](https://coveralls.io/) and david with your github repo.
+3. set the following [environment vars](https://circleci.com/docs/1.0/environment-variables/) in your Circle CI build:
+    - COVERALLS_REPO_TOKEN - access token for [coveralls](http://coveralls.io), used to publish a coverage report.
+    - PROD_FUNCTION_NAME - the name of the AWS Lambda you want to build  when `master` is pushed to github.
+    - DEV_FUNCTION_NAME - (optional) the name of the AWS Lambda you want to build  when `develop` is pushed to github.
+4. Be sure to replace references to `node-lambda-boilerplate` in the badges at the top of this file  with the name of your repo.
