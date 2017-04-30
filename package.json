@@ -24,7 +24,7 @@
   },
   "engine-strict": true,
   "author": "chrisedwards82@gmail.com",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
