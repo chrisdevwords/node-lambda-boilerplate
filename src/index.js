@@ -16,7 +16,6 @@ function handler(event, context, callback) {
     });
 }
 
-export {
-    // eslint-disable-next-line import/prefer-default-export
+module.exports = {
     handler
-}
+};

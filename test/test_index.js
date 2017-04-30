@@ -1,13 +1,13 @@
+const PATH = require('path');
+const { beforeEach, afterEach, describe, it } = require('mocha');
+const { expect, config } = require('chai');
+const request = require('request-promise-native');
+const sinon = require('sinon');
 
-import mocha from 'mocha';
-import chai from 'chai';
-// import request from 'request-promise-native';
-// import sinon from 'sinon';
+const { handler } = require('../src');
 
-import { handler } from '../src';
+const context = describe;
 
-const { beforeEach, afterEach, describe, it } = mocha;
-const { expect, config } = chai;
 
 config.includeStack = true;
 
