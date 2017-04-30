@@ -48,16 +48,16 @@ This should output files.zip to the project root for upload to the AWS Lambda Co
 ### Deploying w/ Circle CI
 Included is a `circle.yml` file for deployment to AWS with [CircleCI](https://circleci.com).
 This will:
-1. run mocha tests 
-2. publish a coverage report with [coveralls](http://coveralls.io)
-3. publish a dependency status report with [david](https://david-dm.org/)
-4. deploy your code to AWS when master or develop is updated on github.
+1. Run mocha tests.
+2. Publish a coverage report with [coveralls](http://coveralls.io).
+3. Publish a dependency status report with [david](https://david-dm.org/).
+4. Deploy your code to AWS when master or develop is updated on github.
 
 In order to deploy :
 1. [configure AWS Permissions for your Circle CI account](https://circleci.com/docs/1.0/continuous-deployment-with-amazon-s3/).
-2. Set up [coveralls](https://coveralls.io/) and david with your github repo.
-3. set the following [environment vars](https://circleci.com/docs/1.0/environment-variables/) in your Circle CI build:
+2. Setup [coveralls](https://coveralls.io/) for your repo.
+3. Set the following [environment vars](https://circleci.com/docs/1.0/environment-variables/) in your Circle CI build console:
     - COVERALLS_REPO_TOKEN - access token for [coveralls](http://coveralls.io), used to publish a coverage report.
     - PROD_FUNCTION_NAME - the name of the AWS Lambda you want to build  when `master` is pushed to github.
     - DEV_FUNCTION_NAME - (optional) the name of the AWS Lambda you want to build  when `develop` is pushed to github.
-4. Be sure to replace references to `node-lambda-boilerplate` in the badges at the top of this file  with the name of your repo.
+4. Be sure to replace references to `node-lambda-boilerplate` in the badges at the top of this README with the name of your repo.
